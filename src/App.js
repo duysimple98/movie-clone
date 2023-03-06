@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./components/Navbar/Navbar";
+import Intro from "./components/Intro/Intro";
+import Contents from "./components/Contents/Contents";
+import Menus from "./components/Menus/Menus";
+import MoviesDetail from "./components/MoviesDetail/MoviesDetail";
+import { useSelector } from "react-redux";
+import SearchMovies from "./components/SearchMovies/SearchMovies";
+import Home from "./components/Pages/Home";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Search from "./components/Pages/Search";
+import Footer from "./components/Footer/Footer";
 
 function App() {
+  const { MovieDetail } = useSelector((state) => state.infoMovies);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
